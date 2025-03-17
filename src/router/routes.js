@@ -2,8 +2,13 @@ const routes = [
   {
     path: '/',
     component: () => import('layouts/main-layout.vue'),
+    redirect: () => ({ name: 'messenger' }),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      {
+        path: 'projects/:projectId/scripts/:scriptId',
+        name: 'messenger',
+        component: () => import('pages/index-page.vue')
+      }
     ]
   },
 
