@@ -17,7 +17,7 @@ const { projectId, scriptId } = useParams()
 const api = useApi()
 
 async function connection () {
-  const { data } = await api.connection({ projectId }, { scriptId })
+  const { data } = await api.connection({ projectId, scriptId })
   console.log(data)
 }
 connection()

@@ -1,8 +1,8 @@
 import ApiInstance from 'src/api/api-instance'
 
 class Api extends ApiInstance {
-  connection ({ projectId }, payload) {
-    return this._post(`api/v1/projects/${projectId}/chats/respondent-connection`, payload)
+  connection ({ projectId, scriptId }) {
+    return this._get(`api/v1/projects/${projectId}/scripts/${scriptId}/messengers/connection`)
   }
 }
 
