@@ -1,81 +1,69 @@
 <template>
-  <q-header class="app-header">
-    <q-btn
+  <header class="app-header">
+    <app-button
       v-if="canResetMode"
       icon="minimize"
-      color="primary"
-      flat
-      padding="0"
-      no-caps
-      class="app-header__action"
+      class="base-text--lg"
       @click="resetMode"
     />
-    <q-btn
+    <app-button
       :icon="nextViewMode.icon"
-      color="primary"
-      flat
-      padding="0"
-      no-caps
-      class="app-header__action"
+      class="base-text--lg"
       @click="nextMode"
     />
-    <q-btn
+    <app-button
       icon="close"
-      color="primary"
-      flat
-      padding="0"
-      no-caps
-      class="app-header__action"
-      @click="closeHandler"
+      class="base-text--lg"
+      @click="widget.close"
     />
-  </q-header>
+  </header>
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useMessengerState } from 'src/stores'
-import { messengerViewMode } from 'stores/messenger-state.store'
+import { computed } from 'vue';
+import { getWidgetInstance, viewMode } from 'boot/widget';
+import AppButton from 'components/app/app-button/app-button.vue';
 
 defineOptions({
-  name: 'app-header'
-})
+  name: 'app-header',
+});
 
-const { state, updateState } = useMessengerState()
+const widget = getWidgetInstance();
 
 const nextViewMode = computed(() => {
-  switch (state.value.mode) {
-    case messengerViewMode.STANDARD:
-    case messengerViewMode.FULLSCREEN:
-      return { icon: 'aspect_ratio', mode: messengerViewMode.POPUP }
-    case messengerViewMode.POPUP:
-      return { icon: 'web_asset', mode: messengerViewMode.FULLSCREEN }
+  switch (widget.mode.value) {
+    case viewMode.STANDARD:
+    case viewMode.FULLSCREEN:
+      return { icon: 'aspect_ratio', mode: viewMode.POPUP };
+    case viewMode.POPUP:
+      return { icon: 'web_asset', mode: viewMode.FULLSCREEN };
     default:
-      return { icon: 'aspect_ratio', mode: messengerViewMode.STANDARD }
+      return { icon: 'aspect_ratio', mode: viewMode.STANDARD };
   }
-})
+});
 
-const canResetMode = computed(() => state.value.mode !== messengerViewMode.STANDARD)
+const canResetMode = computed(() => widget.mode.value !== viewMode.STANDARD);
 
-function closeHandler () {
-  updateState({ mode: messengerViewMode.STANDARD, open: false })
+function nextMode() {
+  widget.changeMode(nextViewMode.value.mode);
 }
-
-function nextMode () {
-  updateState({ mode: nextViewMode.value.mode })
-}
-function resetMode () {
-  updateState({ mode: messengerViewMode.STANDARD })
+function resetMode() {
+  widget.changeMode(viewMode.STANDARD);
 }
 </script>
 
 <style scoped lang="scss">
 .app-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
-  width: 100%;
   align-items: center;
   gap: 4px;
   justify-content: end;
-  background: transparent;
+  padding: 4px;
+  background-color: #FFFFFF;
 }
 
 </style>

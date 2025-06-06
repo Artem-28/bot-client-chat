@@ -1,13 +1,17 @@
-import ApiInstance from 'src/api/api-instance'
+import ApiInstance from 'src/api/api-instance';
 
 class Api extends ApiInstance {
-  connection ({ projectId, scriptId }) {
-    return this._get(`api/v1/projects/${projectId}/scripts/${scriptId}/messengers/connection`)
+  getConnectionToken(widgetId) {
+    return this._get(`widget-api/v1/widgets/${widgetId}/connected`);
+  }
+
+  getHistory(widgetId) {
+    return this._get(`widget-api/v1/widgets/${widgetId}/history`);
   }
 }
 
-const api = new Api()
+const api = new Api();
 
-const useApi = () => api
+const useApi = () => api;
 
-export default useApi
+export default useApi;

@@ -26,14 +26,14 @@ module.exports = {
     // 'plugin:vue/vue3-recommended', // Priority C: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
 
     'standard'
-    
+
   ],
 
   plugins: [
     // https://eslint.vuejs.org/user-guide/#why-doesn-t-it-work-on-vue-files
     // required to lint *.vue files
     'vue',
-    
+
   ],
 
   globals: {
@@ -51,14 +51,16 @@ module.exports = {
 
   // add your custom rules here
   rules: {
-    
-    // allow async-await
+    'comma-dangle': ['error', 'always-multiline'],
+    'semi': ['error', 'always'],
+    'space-before-function-paren': ['error', { 'anonymous': 'never', "named": "never", "asyncArrow": "always" }],
+    'camelcase': 'off',
     'generator-star-spacing': 'off',
-    // allow paren-less arrow functions
     'arrow-parens': 'off',
     'one-var': 'off',
     'no-void': 'off',
     'multiline-ternary': 'off',
+    'vue/multi-word-component-names': 'off',
 
     'import/first': 'off',
     'import/named': 'error',
@@ -68,7 +70,7 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
-    
+
     'prefer-promise-reject-errors': 'off',
 
     // allow debugger during development only

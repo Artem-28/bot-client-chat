@@ -1,0 +1,38 @@
+.base-bg-color {
+  &--light-primary {
+    background-color: $light-primary !important;
+  }
+  &--primary {
+    background-color: $primary !important;
+  }
+  &--secondary {
+    background-color: $bg-secondary !important;
+  }
+}
+
+.base-color {
+  &--light-primary {
+    color: $light-primary !important;
+  }
+  &--primary {
+    color: $primary !important;
+  }
+  &--secondary {
+    color: $bg-secondary !important;
+  }
+}
+
+.base-bg--secondary
+
+.base-hide-scrollbar {
+  /* Скрываем scrollbar для Chrome, Safari и Opera */
+  .example::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Скрываем scrollbar для IE, Edge и Firefox */
+  .example {
+    -ms-overflow-style: none;  /* IE и Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}

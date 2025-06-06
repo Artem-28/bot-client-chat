@@ -1,11 +1,8 @@
-import { useRoute } from 'vue-router'
+import { useRoute } from 'vue-router';
 
 export const useParams = () => {
-  const route = useRoute()
-  const projectId = Number(route.params.projectId)
-  const scriptId = Number(route.params.scriptId)
-  return {
-    projectId,
-    scriptId
-  }
-}
+  const route = useRoute();
+  const widgetId = Number(route.params.widgetId);
+  console.log(route.params);
+  return { widgetId };
+};
